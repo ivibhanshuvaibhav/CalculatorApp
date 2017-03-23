@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "1");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.one)));
             }
         });
 
@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "2");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.two)));
             }
         });
 
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "3");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.three)));
             }
         });
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "4");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.four)));
             }
         });
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         b5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "5");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.five)));
             }
         });
 
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         b6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "6");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.six)));
             }
         });
 
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         b7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "7");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.seven)));
             }
         });
 
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         b8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "8");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.eight)));
             }
         });
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         b9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "9");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.nine)));
             }
         });
 
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + "0");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.zero)));
             }
         });
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         bDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                answerField.setText(answerField.getText() + ".");
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.dot)));
             }
         });
 
@@ -113,8 +113,7 @@ public class MainActivity extends AppCompatActivity {
         bAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val1 = Float.parseFloat(answerField.getText() + "");
-                answerField.setText(null);
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.add)));
                 add = true;
             }
         });
@@ -123,8 +122,7 @@ public class MainActivity extends AppCompatActivity {
         bSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val1 = Float.parseFloat(answerField.getText() + "");
-                answerField.setText(null);
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.sub)));
                 sub = true;
             }
         });
@@ -133,8 +131,7 @@ public class MainActivity extends AppCompatActivity {
         bMul.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val1 = Float.parseFloat(answerField.getText() + "");
-                answerField.setText(null);
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.mul)));
                 mul = true;
             }
         });
@@ -143,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
         bDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                val1 = Float.parseFloat(answerField.getText() + "");
-                answerField.setText(null);
+                answerField.setText(String.format(getString(R.string.values), answerField.getText(), getString(R.string.div)));
                 div = true;
             }
         });
@@ -153,22 +149,30 @@ public class MainActivity extends AppCompatActivity {
         bEq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (add == true){
-                    val2 = Float.parseFloat(answerField.getText() + "");
+                if (add){
+                    String values[] = answerField.getText().toString().split("\\+");
+                    val1 = Float.parseFloat(values[0]);
+                    val2 = Float.parseFloat(values[1]);
                     answer = val1 + val2;
-                    answerField.setText("Result: " + answer);
-                } else if (sub == true){
-                    val2 = Float.parseFloat(answerField.getText() + "");
+                    answerField.setText(String.format(getString(R.string.answer), answer));
+                } else if (sub){
+                    String values[] = answerField.getText().toString().split("-");
+                    val1 = Float.parseFloat(values[0]);
+                    val2 = Float.parseFloat(values[1]);
                     answer = val1 - val2;
-                    answerField.setText("Result: " + answer);
-                } else if (mul == true){
-                    val2 = Float.parseFloat(answerField.getText() + "");
+                    answerField.setText(String.format(getString(R.string.answer), answer));
+                } else if (mul){
+                    String values[] = answerField.getText().toString().split("\\*");
+                    val1 = Float.parseFloat(values[0]);
+                    val2 = Float.parseFloat(values[1]);
                     answer = val1 * val2;
-                    answerField.setText("Result: " + answer);
-                } else if (div == true){
-                    val2 = Float.parseFloat(answerField.getText() + "");
+                    answerField.setText(String.format(getString(R.string.answer), answer));
+                } else if (div){
+                    String values[] = answerField.getText().toString().split("/");
+                    val1 = Float.parseFloat(values[0]);
+                    val2 = Float.parseFloat(values[1]);
                     answer = val1 / val2;
-                    answerField.setText("Result: " + answer);
+                    answerField.setText(String.format(getString(R.string.answer), answer));
                 }
 
             }
